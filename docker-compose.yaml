@@ -15,8 +15,8 @@ services:
       - "80:80/tcp"
       - "443:443/tcp"
     volumes:
-      - "~/home/pihole/etc-pihole/:/etc/pihole/"
-      - "~/home/pihole/etc-dnsmasq.d/:/etc/dnsmasq.d/"
+       - './etc-pihole:/etc/pihole'
+      - './etc-dnsmasq.d:/etc/dnsmasq.d'
     cap_add:
       - NET_ADMIN
     restart: unless-stopped
