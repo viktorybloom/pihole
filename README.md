@@ -1,6 +1,6 @@
 # pihole
 Docker setup for pihole using macvlan container mapping.
-Currently setup for use in Ubuntu Server.
+Currently setup for use in Ubuntu Server - see https://github.com/viktorybloom/rpi-enable-eth0-ubuntu-server for setup on RPi (w/eth0).
 
 https://github.com/pi-hole/docker-pi-hole
 
