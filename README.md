@@ -6,7 +6,7 @@ https://github.com/pi-hole/docker-pi-hole
 
 ### Prerequisites
 
-If you do not have additional dns services (quad 9) held in `/etc/netplan/*.yaml`, follow below steps.  
+If you do not have additional dns services (eg. quad 9) held in `/etc/netplan/*.yaml`, follow below steps.  
 
 `./prerequisite.sh`
 
