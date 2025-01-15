@@ -6,7 +6,7 @@ services:
     image: pihole/pihole:latest
     hostname: pihole
     networks:
-      pih_network:
+      macvlan_network:
         ipv4_address: 192.168.1.149   #pihole address
     environment:
       TZ: 'Australia/Brisbane'     #Change to your timezone
@@ -25,13 +25,12 @@ services:
     restart: "unless-stopped"
 
 networks:
-  pih_network:
+  macvlan_network:
     driver: macvlan
     driver_opts:
-      parent: eth0  
+      parent: eth0
     ipam:
       config:
         - subnet: 192.168.1.0/24     # Your network subnet
           gateway: 192.168.1.1       # Your network gateway
           ip_range: 192.168.1.149/32  # ip for pihole container
-
