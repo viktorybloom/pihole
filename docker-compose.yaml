@@ -1,4 +1,4 @@
-version: "3.7"
+version: "3"
 
 services:
   pihole:
@@ -6,11 +6,11 @@ services:
     image: pihole/pihole:latest
     hostname: pihole
     networks:
-      ipvlan_base:
-        ipv4_address: 10.9.8.149
+      macvlan_network:
+        ipv4_address: 192.168.1.149
     environment:
-      TZ: 'Australia/Brisbane'
-      WEBPASSWORD: 'password'
+      - TZ=Australia/Brisbane
+      - FTLCONF_webserver_api_password=pipassword
     ports:
       - "443:443/tcp"
       - "53:53/tcp"
@@ -19,12 +19,18 @@ services:
       - "80:80/tcp"
     volumes:
       - "./etc/pihole:/etc/pihole"
-      - "./etc/dnsmasq.d:/etc/dnsmasq.d"
     cap_add:
       - NET_ADMIN
     restart: unless-stopped
 
 networks:
-  ipvlan_base:
-    external: true
+  macvlan_network:
+    driver: macvlan
+    driver_opts:
+      parent: enp4s0
+    ipam:
+      config:
+        - subnet: 192.168.1.0/24
+          gateway: 192.168.1.1
+          ip_range: 192.168.1.149/32
 
